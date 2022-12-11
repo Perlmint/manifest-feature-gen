@@ -1,0 +1,11 @@
+{
+    "dictionaries": [
+        "en_US",
+        "rust"
+    ],
+    "words": [
+        "Hasher",
+        "Shouty",
+        "thiserror"
+    ]
+}
