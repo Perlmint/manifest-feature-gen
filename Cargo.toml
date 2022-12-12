@@ -1,6 +1,6 @@
 [package]
 name = "manifest-feature-gen"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "Feature generator for cargo manifest"
 license-file = "LICENSE"
@@ -8,6 +8,5 @@ keywords = ["manifest", "feature", "generator"]
 
 [dependencies]
 fallible-iterator = "0.2.0"
-heck = "0.4.0"
 thiserror = "1.0.37"
 toml_edit = { version = "0.15.0" }

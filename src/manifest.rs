@@ -5,13 +5,12 @@ use std::{
 };
 
 use fallible_iterator::FallibleIterator;
-use heck::ToShoutySnakeCase;
 use toml_edit::{Array, Document, Formatted, Item, Table, Value};
 
 use crate::{Error, ToFeatureName};
 
 /// Cargo manifest representation for editing features.
-/// 
+///
 /// This automatically remove generated features while loading.\
 /// Generated features are identified by comment.\
 /// For correct working, Do not remove auto-generated marking comment.
@@ -256,7 +255,7 @@ impl Manifest {
 
             if std::env::var(format!(
                 "CARGO_FEATURE_{}",
-                feature_name.to_shouty_snake_case()
+                feature_name.replace('-', "_").to_uppercase()
             ))
             .is_ok()
             {
