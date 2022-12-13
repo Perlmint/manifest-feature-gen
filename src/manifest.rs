@@ -196,7 +196,7 @@ impl Manifest {
                     if let Some(deps) = item.as_array() {
                         (deps.decor().suffix().unwrap_or_default().trim()
                             == AUTO_GENERATE_COMMENT.trim())
-                        .then_some(Ok(feature.to_string()))
+                        .then(|| Ok(feature.to_string()))
                     } else {
                         Some(Err(Error::MalformedManifest(format!(
                             "value of feature({}) is not a array",
