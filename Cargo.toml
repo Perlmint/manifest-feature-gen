@@ -3,6 +3,7 @@ name = "manifest-feature-gen"
 version = "0.1.2"
 edition = "2021"
 description = "Feature generator for cargo manifest"
+repository = "https://github.com/Perlmint/manifest-feature-gen"
 license-file = "LICENSE"
 keywords = ["manifest", "feature", "generator"]
 
