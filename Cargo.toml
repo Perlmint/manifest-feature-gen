@@ -8,6 +8,6 @@ license-file = "LICENSE"
 keywords = ["manifest", "feature", "generator"]
 
 [dependencies]
-fallible-iterator = "0.2.0"
+fallible-iterator = "0.3.0"
 thiserror = "1.0.37"
-toml_edit = { version = "0.15.0" }
+toml_edit = { version = "0.21.0" }

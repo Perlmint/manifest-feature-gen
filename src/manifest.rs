@@ -194,7 +194,12 @@ impl Manifest {
             let feature_names =
                 fallible_iterator::convert(features.iter().filter_map(|(feature, item)| {
                     if let Some(deps) = item.as_array() {
-                        (deps.decor().suffix().unwrap_or_default().trim()
+                        (deps
+                            .decor()
+                            .suffix()
+                            .and_then(|s| s.as_str())
+                            .unwrap_or_default()
+                            .trim()
                             == AUTO_GENERATE_COMMENT.trim())
                         .then(|| Ok(feature.to_string()))
                     } else {
