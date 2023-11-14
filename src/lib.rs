@@ -2,7 +2,9 @@
 //!
 //! ## Usage
 //!
-//! ```rust
+//! ```should_panic
+//! use manifest_feature_gen::{Manifest, ToFeatureName};
+//!
 //! enum Features {
 //!     Feature1,
 //!     Feature2,
@@ -10,16 +12,19 @@
 //!
 //! impl ToFeatureName for Features {
 //!     fn to_feature_name(&self) -> String {
-//!         // implement
+//!         unimplemented!()
 //!     }
 //! }
 //!
-//! let mut manifest = Manifest::new_with_env()?;
-//! let optional_features = manifest.add_features([
-//!     Features::Feature1,
-//!     Features::Feature2,
-//! ], |_, _| {}).unwrap();
-//! manifest.write()?;
+//! fn main() -> Result<(), manifest_feature_gen::Error> {
+//!     let mut manifest = Manifest::new_with_env()?;
+//!     let optional_features = manifest.add_features([
+//!         Features::Feature1,
+//!         Features::Feature2,
+//!     ].into_iter(), |_, _| {}).unwrap();
+//!     manifest.write()?;
+//!     Ok(())
+//! }
 //! ```
 
 /// Possible errors while using manifest-feature-gen
