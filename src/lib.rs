@@ -17,7 +17,7 @@
 //! }
 //!
 //! fn main() -> Result<(), manifest_feature_gen::Error> {
-//!     let mut manifest = Manifest::new_with_env()?;
+//!     let mut manifest = Manifest::new_with_env(true)?;
 //!     let optional_features = manifest.add_features([
 //!         Features::Feature1,
 //!         Features::Feature2,
