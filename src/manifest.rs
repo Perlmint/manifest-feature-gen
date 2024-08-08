@@ -5,7 +5,7 @@ use std::{
 };
 
 use fallible_iterator::FallibleIterator;
-use toml_edit::{Array, Document, Formatted, Item, Table, Value};
+use toml_edit::{Array, DocumentMut, Formatted, Item, Table, Value};
 
 use crate::{Error, ToFeatureName};
 
@@ -17,7 +17,7 @@ use crate::{Error, ToFeatureName};
 pub struct Manifest {
     path: PathBuf,
     original_features: HashMap<String, HashSet<String>>,
-    document: toml_edit::Document,
+    document: toml_edit::DocumentMut,
     prevent_build_when_changed: bool,
 }
 
@@ -125,7 +125,7 @@ impl Manifest {
     /// Load cargo manifest from specified path
     pub fn new(path: PathBuf, prevent_build_when_changed: bool) -> Result<Self, Error> {
         let document = std::fs::read_to_string(&path)?;
-        let mut document: toml_edit::Document = document.parse()?;
+        let mut document: toml_edit::DocumentMut = document.parse()?;
 
         let original_features = Self::collect_features(&document)?;
 
@@ -155,7 +155,7 @@ impl Manifest {
         Self::new(path, prevent_build_when_changed)
     }
 
-    fn collect_features(document: &Document) -> Result<HashMap<String, HashSet<String>>, Error> {
+    fn collect_features(document: &DocumentMut) -> Result<HashMap<String, HashSet<String>>, Error> {
         if let Some(features) = document.as_table().get(FEATURES_TABLE_NAME) {
             let features = features
                 .as_table()
