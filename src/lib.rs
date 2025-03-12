@@ -2,7 +2,7 @@
 //!
 //! ## Usage
 //!
-//! ```should_panic
+//! ```
 //! use manifest_feature_gen::{Manifest, ToFeatureName};
 //!
 //! enum Features {
@@ -12,12 +12,15 @@
 //!
 //! impl ToFeatureName for Features {
 //!     fn to_feature_name(&self) -> String {
-//!         unimplemented!()
+//!         match self {
+//!             Features::Feature1 => "feature1".to_string(),
+//!             Features::Feature2 => "feature2".to_string(),
+//!         }
 //!     }
 //! }
 //!
 //! fn main() -> Result<(), manifest_feature_gen::Error> {
-//!     let mut manifest = Manifest::new_with_env(true)?;
+//!     let mut manifest = Manifest::new("Cargo.toml")?;
 //!     let optional_features = manifest.add_features([
 //!         Features::Feature1,
 //!         Features::Feature2,
@@ -34,6 +37,8 @@ pub enum Error {
     EnvError,
     #[error("IO error - {0:?}")]
     IoError(#[from] std::io::Error),
+    #[error("fmt error - {0:?}")]
+    FmtError(#[from] std::fmt::Error),
     #[error("Failed to parse manifest - {0:?}")]
     ParseError(#[from] toml_edit::TomlError),
     #[error("Manifest is malformed - {0}")]
