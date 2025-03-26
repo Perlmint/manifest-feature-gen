@@ -9,5 +9,5 @@ keywords = ["manifest", "feature", "generator"]
 
 [dependencies]
 fallible-iterator = "0.3.0"
-thiserror = "1.0.37"
-toml_edit = "0.22.20"
+thiserror = "2"
+toml_edit = "0.22.24"
